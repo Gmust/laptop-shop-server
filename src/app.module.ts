@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SequelizeConfigService } from './config/sequelizeConfig.service';
 import { dbConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
+import { LaptopsModule } from './laptops/laptops.module';
 
 
 @Module({
@@ -18,7 +19,8 @@ import { AuthModule } from './auth/auth.module';
       load: [dbConfig]
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    LaptopsModule
   ],
   controllers: [UsersController],
   providers: []
