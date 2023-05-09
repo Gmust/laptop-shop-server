@@ -1,8 +1,4 @@
-import {
-  Column, ForeignKey, HasMany, HasOne,
-  Model,
-  Table
-} from 'sequelize-typescript';
+import { Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class Laptop extends Model {
@@ -34,10 +30,12 @@ export class Laptop extends Model {
   @Column
   description: string;
 
+  @Column
+  images: string;
+
   @HasMany(() => TechData)
   technical_data: TechData[];
 }
-
 
 @Table
 export class TechData extends Model {
