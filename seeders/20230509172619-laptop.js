@@ -1,24 +1,29 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { faker } = require('@faker-js/faker');
 
+('use strict');
 
-'use strict';
+const manufacturer = ['Acer', 'Asus', 'Dell', 'MSI', 'Lenovo', 'Apple'];
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Laptops', [...Array(100)].map(() => ({
-      name: faker.name.firstName(),
-      vendor_code: faker.internet.password(),
-      price: faker.random.numeric(),
-      in_stock: faker.random.numeric(),
-      bestseller: false,
-      new: false,
-      manufacturer: faker.lorem.sentence(2),
-      description: faker.lorem.sentence(2),
-      images: faker.image.technics(1234, 2345, true),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    })));
+    return queryInterface.bulkInsert(
+      'Laptops',
+      [...Array(100)].map(() => ({
+        name: faker.lorem.sentence(2),
+        vendor_code: faker.internet.password(),
+        price: faker.random.numeric(5),
+        in_stock: faker.random.numeric(2),
+        bestseller: faker.datatype.boolean(),
+        new: faker.datatype.boolean(),
+        manufacturer: manufacturer[Math.floor(Math.random() * manufacturer.length)],
+        description: faker.lorem.sentence(10),
+        images: JSON.stringify([...Array(7)].map(() => `${faker.image.technics()}?random=${faker.random.numeric(30)}`)),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }))
+    );
   },
 
   async down(queryInterface, Sequelize) {

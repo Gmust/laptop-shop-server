@@ -2,7 +2,6 @@ import { Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
 
 @Table
 export class Laptop extends Model {
-
   @Column({ autoIncrement: true, primaryKey: true })
   id: number;
 
@@ -39,10 +38,12 @@ export class Laptop extends Model {
 
 @Table
 export class TechData extends Model {
-
   @ForeignKey(() => Laptop)
-  @Column({ autoIncrement: true, primaryKey: true })
+  @Column
   id: number;
+
+  @Column({ autoIncrement: true, primaryKey: true })
+  techDataId: number;
 
   @Column({ allowNull: false })
   title: string;
@@ -50,4 +51,3 @@ export class TechData extends Model {
   @Column({ allowNull: false })
   description: string;
 }
-
