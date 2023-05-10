@@ -9,8 +9,7 @@ export class LaptopsService {
   constructor(
     @InjectModel(Laptop) private laptopModel: typeof Laptop,
     @InjectModel(TechData) private techDataModel: typeof TechData
-  ) {
-  }
+  ) {}
 
   async paginateAndFilter(query: ILaptopQuery): Promise<{ count: number; rows: Laptop[] }> {
     const limit = +query.limit;
@@ -45,4 +44,3 @@ export class LaptopsService {
     });
   }
 }
-

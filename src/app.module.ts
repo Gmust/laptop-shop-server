@@ -7,6 +7,7 @@ import { SequelizeConfigService } from './config/sequelizeConfig.service';
 import { dbConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { LaptopsModule } from './laptops/laptops.module';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 
 
 @Module({
@@ -20,7 +21,8 @@ import { LaptopsModule } from './laptops/laptops.module';
     }),
     UsersModule,
     AuthModule,
-    LaptopsModule
+    LaptopsModule,
+    ShoppingCartModule
   ],
   controllers: [UsersController],
   providers: []

@@ -3,10 +3,8 @@ import { LaptopsService } from './laptops.service';
 import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
 import {
   FindOneByIdResponse,
-  GetBestsellersResponse,
   GetByNameRequest,
   GetByNameResponse,
-  GetNewResponse,
   PaginateAndFilterResponse,
   SearchRequest,
   SearchResponse
@@ -42,13 +40,13 @@ export class LaptopsController {
     return this.laptopsService.searchByString(search);
   }
 
-  @ApiOkResponse({ type: GetBestsellersResponse })
+  // @ApiOkResponse({ type: GetBestsellersResponse })
   @Get('bestsellers')
   bestsellers() {
     return this.laptopsService.bestsellers();
   }
 
-  @ApiOkResponse({ type: GetNewResponse })
+  // @ApiOkResponse({ type: GetNewResponse })
   @Get('new')
   new() {
     return this.laptopsService.new();
