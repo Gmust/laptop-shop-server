@@ -8,6 +8,7 @@ import { dbConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { LaptopsModule } from './laptops/laptops.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+import { PaymentModule } from './payment/payment.module';
 
 
 @Module({
@@ -22,7 +23,8 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
     UsersModule,
     AuthModule,
     LaptopsModule,
-    ShoppingCartModule
+    ShoppingCartModule,
+    PaymentModule
   ],
   controllers: [UsersController],
   providers: []
