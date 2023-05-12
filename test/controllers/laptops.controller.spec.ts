@@ -2,13 +2,11 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as bcrypt from 'bcrypt';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { AuthModule } from 'src/auth/auth.module';
 import { dbConfig } from 'src/config/configuration';
 import { SequelizeConfigService } from 'src/config/sequelizeConfig.service';
-import { User } from 'src/users/users.model';
 import { LaptopsModule } from 'src/laptops/laptops.module';
 import * as request from 'supertest';
 
@@ -47,22 +45,6 @@ describe('Laptops controller', () => {
     app.use(passport.initialize());
     app.use(passport.session());
     await app.init();
-  });
-
-  beforeEach(async () => {
-    const user = new User();
-
-    const hashedPassword = await bcrypt.hash(mockedUser.password, 10);
-    user.username = mockedUser.username;
-    user.email = mockedUser.email;
-    user.password = hashedPassword;
-
-    return user.save();
-  });
-
-  afterEach(async () => {
-    await User.destroy({ where: { username: mockedUser.username } });
-    await User.destroy({ where: { username: 'test' } });
   });
 
   it('should get laptop', async () => {

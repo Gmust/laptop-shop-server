@@ -145,16 +145,3 @@ describe('Auth service', () => {
   });
 });
 
-/*
-"id": 1,
-  "name": "test name",
-  "vendor_code": "C0AcdiSDPXhhbvg",
-  "price": 5,
-  "in_stock": 66,
-  "bestseller": false,
-  "new": false,
-  "manufacturer": "Dell",
-  "description": "Dolores in fugiat accusamus voluptate nostrum iusto tenetur aliquid eveniet.",
-  "images": "[\"https://loremflickr.com/640/480/technics?random=134766193914286208575250801254\",\"https://loremflickr.com/640/480/technics?random=201912755736165458249718452866\",\"https://loremflickr.com/640/480/technics?random=276237611085767714580004230672\",\"https://loremflickr.com/640/480/technics?random=866445955337217697969224523593\",\"https://loremflickr.com/640/480/technics?random=428664039142187150193869014592\",\"https://loremflickr.com/640/480/technics?random=657762079667675748648326142493\",\"https://loremflickr.com/640/480/technics?random=830472207358197809393796553231\"]",
-  "createdAt": "2023-05-10T13:52:50.000Z",
-  "updatedAt": "2023-05-10T13:52:50.000Z",*/
