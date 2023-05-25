@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { faker } from '@faker-js/faker';
+import { Op } from 'sequelize';
 
 class Laptops {
   @ApiProperty({ example: 1 })
@@ -73,23 +74,36 @@ export class GetNewResponse extends PaginateAndFilterResponse {
   rows: NewLaptops[];
 }
 
-export class SearchResponse extends PaginateAndFilterResponse {}
+export class SearchResponse extends PaginateAndFilterResponse {
+}
 
 export class SearchRequest extends PaginateAndFilterResponse {
   @ApiProperty({ example: 'a' })
   search: string;
 }
 
-export class GetByNameResponse extends Laptops {}
+export class GetByNameResponse extends Laptops {
+}
 
 export class GetByNameRequest extends PaginateAndFilterResponse {
   @ApiProperty({ example: 'Iure possimus.' })
   name: string;
 }
 
-export class FindOneByIdResponse extends Laptops {}
+export class FindOneByIdResponse extends Laptops {
+}
 
 export interface ILaptopQuery {
   limit: string;
   offset: string;
+  laptops: string | undefined;
+  priceFrom: string | undefined;
+  priceTo: string | undefined;
+}
+
+export interface ILaptopFilterQuery {
+  price: {
+    [Op.between]: number[]
+  };
+  laptops: string | undefined;
 }

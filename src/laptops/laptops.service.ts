@@ -2,22 +2,35 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 import { Laptop, TechData } from './laptops.model';
-import { ILaptopQuery } from './types';
+import { ILaptopFilterQuery, ILaptopQuery } from './types';
 
 @Injectable()
 export class LaptopsService {
   constructor(
     @InjectModel(Laptop) private laptopModel: typeof Laptop,
     @InjectModel(TechData) private techDataModel: typeof TechData
-  ) {}
+  ) {
+  }
 
   async paginateAndFilter(query: ILaptopQuery): Promise<{ count: number; rows: Laptop[] }> {
     const limit = +query.limit;
     const offset = +query.offset * 20;
+    const filter = {} as Partial<ILaptopFilterQuery>;
+
+    if (query.priceTo && query.priceFrom) {
+      filter.price = {
+        [Op.between]: [+query.priceFrom, +query.priceTo]
+      };
+    }
+
+    if (query.laptops) {
+      filter.laptops = JSON.parse(decodeURIComponent(query.laptops));
+    }
 
     return this.laptopModel.findAndCountAll({
       limit,
-      offset
+      offset,
+      where: filter
     });
   }
 

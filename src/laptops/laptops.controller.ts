@@ -12,7 +12,8 @@ import {
 
 @Controller('laptops')
 export class LaptopsController {
-  constructor(private readonly laptopsService: LaptopsService) {}
+  constructor(private readonly laptopsService: LaptopsService) {
+  }
 
   @ApiOkResponse({ type: PaginateAndFilterResponse })
   @Get()
@@ -50,5 +51,10 @@ export class LaptopsController {
   @Get('new')
   new() {
     return this.laptopsService.new();
+  }
+
+  @Get('/brands')
+  brands() {
+    return ['Acer', 'Asus', 'Dell', 'MSI', 'Lenovo', 'Apple'];
   }
 }
